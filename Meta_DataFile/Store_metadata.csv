@@ -1,0 +1,5 @@
+formatname,columnname,datatype,iskeyfield
+Store,StoreID,int64,1
+Store,StoreName,object,1
+Store,Region,object,0
+Store,Manager,object,0

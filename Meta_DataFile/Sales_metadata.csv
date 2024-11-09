@@ -1,0 +1,10 @@
+formatname,columnname,datatype,iskeyfield
+Sales,SalesID,int64,1
+Sales,DateID,object,1
+Sales,ProductID,int64,1
+Sales,CustomerID,int64,1
+Sales,StoreID,int64,1
+Sales,QuantitySold,int64,0
+Sales,SalesAmount,float64,0
+Sales,DiscountAmount,float64,0
+Sales,NetSalesAmount,float64,0

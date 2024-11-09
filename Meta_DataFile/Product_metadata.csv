@@ -1,0 +1,6 @@
+formatname,columnname,datatype,iskeyfield
+Product,ProductID,int64,1
+Product,ProductName,object,1
+Product,Category,object,0
+Product,SubCategory,object,0
+Product,Price,float64,0

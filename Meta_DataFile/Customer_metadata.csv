@@ -1,0 +1,6 @@
+formatname,columnname,datatype,iskeyfield
+Customer,CustomerID,int64,1
+Customer,CustomerName,object,1
+Customer,Gender,object,0
+Customer,Age,int64,0
+Customer,Location,object,0
