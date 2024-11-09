@@ -2,18 +2,18 @@
 
 ## Table of Content - Links
 
-- [Project Overview](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines/blob/main/README.md#project-overview)
-- [Architecture Overview](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines/blob/main/README.md#architecture-overview)
-- [Orchestration Pipeline](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines/blob/main/README.md#orchestration-pipeline)
+- [Project Overview](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#project-overview-)
+- [Architecture Overview](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#architecture-overview-)
+- [Orchestration Pipeline](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#orchestration-pipeline)
 
 <details>
 <summary>Data Pipeline</summary>
 
-- [Orchestrator Pipeline](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines/blob/main/README.md#data-pipeline)
-- [For Each Activity to iterate through Files](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines/blob/main/README.md#for-each-activity-to-iterate-through-files)
-- [Notebook activity - Validate the CSV file and load the data](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines/blob/main/README.md#notebook-activity---validate-the-csv-file-and-load-the-data)
-- [Copy Data Activity](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines/blob/main/README.md#copy-data-activity)
-- [Upsert Switch Activity](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines/blob/main/README.md#upsert-switch-activity)
+- [Orchestrator Pipeline](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#orchestrator-pipeline)
+- [For Each Activity to iterate through Files](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#for-each-activity-to-iterate-through-files)
+- [Notebook activity - Validate the CSV file and load the data](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#notebook-activity---validate-the-csv-file-and-load-the-data)
+- [Copy Data Activity](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#copy-data-activity)
+- [Upsert Switch Activity](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#upsert-switch-activity)
 
 </details>
 
