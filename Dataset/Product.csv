@@ -1,0 +1,51 @@
+ProductID,ProductName,Category,SubCategory,Price
+1,souledstore,Clothing,Tshirts,7691.99
+2,Whirlpool,Electronics,Refrigerator,5150.9
+3,souledstore,Clothing,Shirts,6248.74
+4,Ikea,Home Decor,Curtains,3526.32
+5,LG,Electronics,TV,4134.88
+6,souledstore,Beauty,Dresses,7752
+7,Mitsubishi,Electronics,AC,3172.01
+8,Whirlpool,Electronics,Refrigerator,8067.78
+9,decathlon,Sports,Swimming Goggles,5862.37
+10,decathlon,Sports,Underpants,8537.49
+11,Ikea,Home Decor,Sofa,4870.51
+12,souledstore,Clothing,Tshits,2896.08
+13,decathlon,Sports,Bat,8914.65
+14,decathlon,Sports,Hockey Bat,528.25
+15,amazewall,Beauty,Wall Art,5312.02
+16,souledstore,Clothing,Chinos,5.3
+17,Godrej,Electronics,Washing Machine,6069.01
+18,decathlon,Sports,Tennis Ball,3232.37
+19,decathlon,Sports,Swimming Goggles,5217.81
+20,souledstore,Clothing,Underpants,1574.29
+21,decathlon,Sports,Bat,5841.35
+22,souledstore,Beauty,Hockey Bat,7377.69
+23,decathlon,Sports,Tennis Ball,9984.08
+24,Ikea,Home Decor,Bed,191.9
+25,decathlon,Sports,Swimming Goggles,7948.21
+26,decathlon,Sports,Swimming Goggles,5365.41
+27,decathlon,Sports,Swimming Goggles,1255.55
+28,acer,Electronics,Laptops,3205.75
+29,decathlon,Sports,Swimming Goggles,7817.23
+30,decathlon,Sports,Tennis Ball,3078.27
+31,Ikea,Home Decor,Utensils,9373.46
+32,souledstore,Clothing,Jeans,232.81
+33,decathlon,Beauty,Workout Gear,8263.8
+34,Ikea,Home Decor,Curtains,4926.35
+35,souledstore,Clothing,Dresses,9671.41
+36,acer,Electronics,Laptops,3822.51
+37,Ikea,Home Decor,Sofa,4687.66
+38,acer,Electronics,Laptops,5393.98
+39,decathlon,Sports,Tennis Ball,9671.92
+40,souledstore,Clothing,Workout Gear,4244.29
+41,Whirlpool,Electronics,Refrigerator,7884.37
+42,decathlon,Sports,Tennis Ball,5305.43
+43,cetaphil,Beauty,Skincare,5319.98
+44,LG,Electronics,Oven,185.08
+45,souledstore,Beauty,Dresses,3824.21
+46,cetaphil,Beauty,Skincare,1078.13
+47,souledstore,Beauty,Dresses,6464.05
+48,Ikea,Home Decor,Door,14.72
+49,decathlon,Sports,Tennis Ball,2866.44
+50,Ikea,Home Decor,Windows,1403.39
