@@ -7,3 +7,10 @@ The project involves the development of a data ingestion pipeline using Microsof
 ## Architecture Overview :
 
 In this process, the source files are located in a designated Source folder. A data pipeline triggers a Spark notebook to verify the files for any new or missing columns, invalid data types, or duplicate key values. If the file passes all checks without errors, the pipeline loads the CSV data into a Parquet file and subsequently calls another Spark notebook to transfer the Parquet file into a Delta table within the Lakehouse. Conversely, if any errors are detected in the file, the pipeline sends out a notification email.
+
+![AltText](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Architecture.png)
+
+## Orchestration Pipeline
+
+### Source Files and Metadata Files
+
