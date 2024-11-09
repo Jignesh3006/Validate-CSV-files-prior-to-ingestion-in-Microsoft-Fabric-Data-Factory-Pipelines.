@@ -14,3 +14,5 @@ In this process, the source files are located in a designated Source folder. A d
 
 ### Source Files and Metadata Files
 
+![AltText](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Images/Sources%20Files%20and%20Metadata.png)
+
