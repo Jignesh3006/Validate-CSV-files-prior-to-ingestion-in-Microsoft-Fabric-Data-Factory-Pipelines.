@@ -1,29 +1,37 @@
 # Robust Data Ingestion
 
-## Table of Content - Links
+## 📜 Table of Contents
+- [Project Overview](#project-overview-)
+- [Architecture Overview](#architecture-overview-)
+- [Orchestrator Pipeline](#orchestrator-pipeline)
+- [Validation Process](#notebook-activity---validate-the-csv-file-and-load-the-data-validation-data)
+- [Copy Data Activity](#copy-data-activity)
+- [Upsert Switch Activity](#upsert-switch-activity)
+- [Error Notifications](#error-notifications)
+- [Semantic Model Refresh](#semantic-model-refresh)
+- [Getting Started](#getting-started)
 
-- [Project Overview](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#project-overview-)
-- [Architecture Overview](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#architecture-overview-)
-- [Orchestration Pipeline](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#orchestration-pipeline)
 
-<details>
-<summary>Data Pipeline</summary>
-
-- [Orchestrator Pipeline](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#orchestrator-pipeline)
-- [For Each Activity to iterate through Files](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#for-each-activity-to-iterate-through-files)
-- [Notebook activity - Validate the CSV file and load the data](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#notebook-activity---validate-the-csv-file-and-load-the-data)
-- [Copy Data Activity](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#copy-data-activity)
-- [Upsert Switch Activity](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/README.md#upsert-switch-activity)
 
 </details>
 
 ## Project Overview :
 
-#### The project involves the development of a data ingestion pipeline using Microsoft Fabric Data Factory, designed to automate the processing of CSV files from a source folder. The pipeline validates the data by checking data types, column names, and duplicate values before ingesting it into a production table in Delta format. If any validation checks fail, an email notification is sent regarding the problematic CSV files. This approach ensures that only correctly formatted data is ingested, enhancing data quality and streamlining the overall data processing workflow.
+The **Robust Data Ingestion Pipeline** project leverages **Microsoft Fabric Data Factory** to automate the validation and ingestion of CSV files from a source folder. Key benefits include:
+
+- **Data Quality Assurance**: Automatically performs checks on structure, data types, and duplicates.
+- **Error Notifications**: Sends timely alerts for failed files.
+- **Scalable Data Management**: Supports large data handling with reduced manual processing..
 
 ## Architecture Overview :
 
-#### In this process, the source files are located in a designated Source folder. A data pipeline triggers a Spark notebook to verify the files for any new or missing columns, invalid data types, or duplicate key values. If the file passes all checks without errors, the pipeline loads the CSV data into a Parquet file and subsequently calls another Spark notebook to transfer the Parquet file into a Delta table within the Lakehouse. Conversely, if any errors are detected in the file, the pipeline sends out a notification email.
+
+This pipeline architecture is centered around CSV validation and ingestion, encapsulated within **Spark Notebooks** in Microsoft Fabric Data Factory. Key components include:
+
+1. **Data Storage**: CSV files and associated metadata are organized in designated **Source** folders.
+2. **Validation Process**: Utilizes Spark Notebooks to validate incoming CSV files.
+3. **Data Processing**: Validated files are converted to **Parquet** format and merged into a **Delta table**.
+4. **Error Handling**: Error notifications are generated for any validation failures.
 
 ![AltText](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Architecture.png)
 
@@ -31,12 +39,14 @@
 
 ### Source Files and Metadata Files
 
-#### The Landing Zone folder contains a subfolder named Dataset, which houses all the CSV files that are set to be processed. Additionally, the Landing Zone folder includes another subfolder called Metadata, where metadata corresponding to each CSV file in the Dataset is stored.
-
+The **Landing Zone** folder consists of:
+- **Dataset Folder**: Contains all CSV files set to be processed.
+- **Metadata Folder**: Holds metadata files defining the expected data structure.
+- **Output Folder**: It contains all the log files of the processed CSV files.
 
 ![AltText](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Images/Sources%20Files%20and%20Metadata.png)
 
-#### The Landing Zone folder contains a subfolder named Metadata, which describes the CSV file format used for validating the CSV files in the subsequent stages of the pipeline. For example, the solution includes a table called Product, which consists of the following columns: Product ID, Product Name, Category, Sub-Category, and Price. In the format definition file Product_meta, there is a row for each column of the Product table that provides details such as the column name, column data type, and whether it serves as a primary key. This metadata file is later utilized in the Spark Notebook to ensure that incoming files conform to this specified format.
+The **Landing Zone folder** contains a subfolder named Metadata, which describes the CSV file format used for validating the CSV files in the subsequent stages of the pipeline. For example, the solution includes a table called Product, which consists of the following columns: **Product ID, Product Name, Category, Sub-Category, and Price** . In the format definition file Product_metadata, there is a row for each column of the Product table that provides details such as the column name, column data type, and whether it serves as a primary key. This metadata file is later utilized in the Spark Notebook to ensure that incoming files conform to this specified format.
 
 ![AltText](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Images/Metadata%20file%20Format.png)
 
@@ -44,21 +54,29 @@
 
 ### Orchestrator Pipeline
 
-#### The orchestrator pipeline is designed to be straightforward. As I am executing my pipeline on a scheduled batch basis, it iterates through the files folder. This involves parameterizing the lakehouse path, the source folders, the destination folder, and the file format. This flexibility enables the same process to be applied to any lakehouse and any file format or table for loading
+The Orchestrator Pipeline automates file processing, iterating through each file and performing parameterized actions based on file structure. Key configurations, including lakehouse paths and file formats, make the pipeline adaptable for any data lakehouse.
 
 
 ![AltText](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Images/Setting%20the%20parameters%20for%20Input%20Folder.png)
 
 
-### For Each Activity to iterate through Files
+## For Each Activity to iterate through Files
 
-#### The child items of the folder, specifically the files located in the Dataset folder, are retrieved and passed as an array. This array is then processed through a For Each activity to execute subsequent actions in the pipeline. In that for each activity it has two switch activity one switch activity has it Copy the File using the Copy Data Activity and Run the Notebook for validating the files.
+Files from the Dataset folder are passed into a For Each activity. This  activitiy for validation and data transfer, including:
+
+Copy Data: Copies the file.
+**Validation Notebook** : Checks data structure and content.
 
 ![AltText](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Images/For%20Each%20Activity%20has%20two%20switch%20activity%20-%201.png)
 
-### Notebook activity - Validate the CSV file and load the data
+## Notebook activity - Validate the CSV file and load the data (Validation Data)
 
-#### Below is the PySpark code  process retrieves the column names and inferred data types from the CSV file, as well as the column names, data types, and key field names from the metadata file. It verifies whether the column names align, if the data types are consistent, if key fields are defined for the file, and checks for any duplicate key values in the incoming file. If duplicate key fields are found, it logs the duplicate key values to a separate file. If the names and data types match and there are no duplicate key values, the file is converted to Parquet format, and the key field names from the metadata file are returned. Otherwise, an appropriate error message is provided.
+The pipeline includes a **Notebook activity** that validates each CSV file against predefined metadata. Key checks performed include:
+
+- **Column Names and Data Types**
+- **Primary Key Constraints**
+- **Duplicate Key Values**
+Successful files are converted to Parquet format for further processing; otherwise, error details are logged.
 
 ```python
 lakehousepath = 'abfss://xxxxxx7@onelake.dfs.fabric.microsoft.com/aef0e8dc-7168-48b5-911c-2aff7f69ed87'
@@ -137,37 +155,47 @@ if haserror == 0:
 
 mssparkutils.notebook.exit(str(result))
 ```
-#### The process includes a notebook activity, and upon the successful execution of this activity, it copies the data. Simultaneously, the output message generated by the notebook activity is stored in a variable.
+ The process includes a notebook activity, and upon the successful execution of this activity, it copies the data. Simultaneously, the output message generated by the notebook activity is stored in a variable.
 
 
 ![Alt](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Images/Activities%20in%20Switch%20Activity%20-%202.png)
 
 ### Copy Data Activity
 
-#### This Copy Data activity essentially moves the csv file from the Landing Zone  files folder to a processed folder in the Fabric Lakehouse. In this copy data activity after files moves to the process folder it gets delete to the source position
+Once validation is successful, the **Copy Data Activity** moves the CSV files to the **Processed** folder in the Lakehouse. If the move is successful, the original files are deleted. 
 
 
 ![Alt](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Images/Setting%20up%20Copy%20Source%20Activity%20-%203.png)
 
 
-#### Destination folder name is derived from the Notebook exit value  which returns the success or the error message 
+ **Destination folder** name is derived from the **Notebook exit value  which returns the success or the error message**. 
 
 
 ![Alt](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Images/Setting%20up%20Destination%20Directory%20-%204.png)
 
-### Upsert Switch Activity 
+## Upsert Switch Activity 
 
-#### In this Switch activity, an Upsert operation is performed to verify whether the CSV file has been successfully validated. If the file validation is successful, the Upsert Notebook activity is executed.
+Determines whether CSV data can be merged into the **Delta table** based on validation results:
+
+- **Successful Validation**: Initiates the upsert to the Delta table.
+- **Validation Failure**: Triggers error notifications.
+If validated, a Spark Notebook merges the Parquet file into the Delta table, updating existing records and inserting new ones
 
 
 ![Alt](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Images/Upsert%20Switch%20Activity%20Conditiion%20-%205.png)
 
-#### If file validated successfully and there is no errors it will call the spark notebook to merge the parquet file written from the previous pyspark notebook activity which was present in the switch activity 
+The parameters for key fields are obtained from the preceding PySpark notebook and passed to the Upsert Table notebook. The processing flow is as follows:
+
+- **Key Fields Present & Table Exists**: A merge expression is constructed for the PySpark upsert statement, allowing existing records to be updated and new records to be inserted into the Delta table.
+  
+- **No Key Fields or Table Doesn't Exist**: The data is written to, or the existing Delta table is overwritten with the new information.
+
+This efficient handling ensures optimal data management and helps maintain the integrity of the dataset. 
 
 
 ![Alt](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Images/Upsert%20Notebook%20-%206.png)
 
-#### Parameters for the key fields are passed in, as previously mentioned. These key fields, derived from the earlier PySpark notebook, are provided to the Upsert Table notebook.The following is the Spark notebook code. If the Delta table already exists and key fields are present, it constructs a string expression for use in the PySpark upsert statement and subsequently performs a merge on the Delta table. If there are no key fields or if the table does not exist, it writes to or overwrites the Delta table.
+
 
 ```Python
 # create or merge to delta
@@ -229,14 +257,32 @@ print(numInserted)
 result = "numInserted="+str(numInserted)+  "|numUpdated="+str(numUpdated)
 mssparkutils.notebook.exit(str(result))
 ```
-#### If validation gets failed it will operate the Outlook activity 
+## Error Notifications 
+
+If validation fails, an Outlook Activity sends notifications detailing the issues to enable timely resolution.
+
 
 ![Alt](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Images/Email%20Notification%20-%207.png)
 
-#### After all the upsert operation it refresh the semantic model where user can see the updated refreshed Power BI Report
+## Semantic Model Refresh
+
+After successful ingestion, a **Semantic Model Refresh** updates Power BI reports to reflect the newly ingested data.
 
 
 ![Alt](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines./blob/main/Images/Semantic%20Model%20Refresh%20-%208.png)
 
+
+## Getting Started
+### Prerequisites
+- Microsoft Azure account
+- Microsoft Fabric subscription
+- Access to Azure Synapse or related tools
+
+### Installation
+Instructions on how to set up the pipeline and run the validations can be found in the associated documentation. Ensure to configure your lakehouse paths and metadata files correctly.
+
+---
+
+Feel free to reach out via [GitHub Issues](https://github.com/Jignesh3006/Validate-CSV-files-prior-to-ingestion-in-Microsoft-Fabric-Data-Factory-Pipelines/issues) for any questions or feature requests!
 
 
